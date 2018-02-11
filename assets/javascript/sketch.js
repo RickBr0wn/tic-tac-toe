@@ -43,7 +43,6 @@ function make2dArray(cols, rows){
   }
   return arr;
 }
-    grid[i][j] = new Circle(i, j);
 
 function mousePressed(){
     let cols = floor(mouseX/scale);
@@ -52,6 +51,7 @@ function mousePressed(){
     console.log("columns: " + cols + "  ||  " + "rows" + rows);
 
     grid[cols][rows] = new Circle(cols, rows);
+    console.log(grid);
 }
 
 function setup(){
