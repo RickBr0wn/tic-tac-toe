@@ -3,6 +3,7 @@ let cols;
 let rows;
 let scale = 100;
 let grid;
+let player = 1;
 
 class Cell{
     constructor(i, j){
@@ -24,15 +25,39 @@ class Circle{
     }
 
     show(){
-        push();
-        noFill();
-        rect(this.location.x, this.location.y, scale, scale);
-        pop();
-        push();
-        stroke(255, 0, 0);
-        strokeWeight(4);
-        ellipse(this.location.x+(scale/2), this.location.y+(scale/2), scale/2, scale/2);
-        pop();
+        if(player = 1){
+            push();
+            noFill();
+            rect(this.location.x, this.location.y, scale, scale);
+            pop();
+            push();
+            stroke(255, 0, 0);
+            strokeWeight(12);
+            ellipse(this.location.x+(scale/2), this.location.y+(scale/2), scale/2, scale/2);
+            pop();
+        }else{
+            push();
+            noFill();
+            rect(this.location.x, this.location.y, scale, scale);
+            pop();
+            push();
+            fill(0, 255, 0);
+            textWeight(12);
+            textSize(scale/2);
+            text("X", this.location.x+(scale/2), this.location.y+(scale/2));
+            pop();
+        }
+        
+    }
+}
+
+function switchPlayer(player){
+    if(player == 1){
+        console.log("switched to: " + player);
+        player = 2;
+    }else{
+        console.log("Now switched to: " + player);
+        player = 1;
     }
 }
 
@@ -48,10 +73,12 @@ function mousePressed(){
     let cols = floor(mouseX/scale);
     let rows = floor(mouseY/scale);
 
-    console.log("columns: " + cols + "  ||  " + "rows" + rows);
+    console.log("columns: " + cols + "  ||  " + "rows: " + rows);
 
     grid[cols][rows] = new Circle(cols, rows);
-    console.log(grid);
+
+    console.log(player);
+    switchPlayer(player);
 }
 
 function setup(){
